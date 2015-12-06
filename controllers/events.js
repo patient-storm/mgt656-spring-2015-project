@@ -146,20 +146,27 @@ function eventDetail (request, response) {
 
 function rsvp (request, response){
   var ev = events.getById(parseInt(request.params.id));
+  var contextData = {errors: [], event: ev};
+  var emailInput=request.body.email.toUpperCase();
   if (ev === null) {
     response.status(404).send('No such event');
+  }if(validator.isEmail(request.body.email) === false){
+    contextData.errors.push('Invalid email');
+  }else if(emailInput.substr(emailInput.length - 9) !== '@YALE.EDU'){
+    contextData.errors.push('We regret to inform you that this event is limited to Yale affiliates');
   }
-
-  if(validator.isEmail(request.body.email)){
+  if(contextData.errors.length === 0){
     ev.attending.push(request.body.email);
     response.redirect('/events/' + ev.id);
   }else{
-    var contextData = {errors: [], event: ev};
-    contextData.errors.push('Invalid email');
-    response.render('event-detail.html', contextData);    
+    response.render('event-detail.html', contextData);
   }
-
 }
+
+
+
+
+
 
 function api(request, response){
   var output = {events: []};
