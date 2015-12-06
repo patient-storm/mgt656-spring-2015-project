@@ -18,6 +18,39 @@
       <li>{{address}}</li>
     {% endfor %}
   </ul>
+  
+  
+  Do you want to attend this awesome event?
+  <br>
+  OF COURSE YOU DO! RSVP BELOW!
+  <br>
+  
+   {% if errors %}
+    <div>
+      <p>Please correct the following errors!</p>
+      <ul class="form-errors">
+        {% for error in errors %}
+          <li>{{error}}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+  
+  <br>
+  
+  <form id="RSVP" method="POST">
+    <label for="email">Email:</label>
+    <input id = "email" type="email" name="email">
+    <br>
+    <button name="Submit" type ="Submit" id="Submit">RSVP</button>
+
+    
+    
+  </form>
+  
+  
+  
+  
   </div>
 <p>
   
