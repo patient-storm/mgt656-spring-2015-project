@@ -99,11 +99,11 @@ function saveEvent(request, response){
     contextData.errors.push('Your image text must be a URL.');
   }
   // Project specs don't require a minimum length of 5. Need to update this code to reflect that.
-  if (validator.isLength(request.body.location, 1, 50) === false) {
-    contextData.errors.push('Your location should be between 1 and 100 letters.');
+  if (validator.isLength(request.body.location, 1, 49) === false) {
+    contextData.errors.push('Your location should be between 1 and 49 characters, inclusive.');
   }
-  if (validator.isLength(request.body.title, 1, 50) === false) {
-    contextData.errors.push('Your title should be between 1 and 100 letters.');
+  if (validator.isLength(request.body.title, 1, 49) === false) {
+    contextData.errors.push('Your title should be between 1 and 49 characters, inclusive.');
   }
 
   if (validator.isInt(request.body.minute) === false) {
