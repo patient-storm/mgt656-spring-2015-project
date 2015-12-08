@@ -1,3 +1,34 @@
+<!-- Load the Content Experiment JavaScript API client for the experiment -->
+<script src="//www.google-analytics.com/cx/api.js?experiment=Y32a4U1JRX-P8M-FfGyrCw"></script>
+
+
+<script>
+ // Ask Google Analytics which variation to show the user.
+ var chosenVariation = cxApi.chooseVariation(Y32a4U1JRX-P8M-FfGyrCw);
+</script>
+
+
+<script>
+// Define JavaScript for each page variation of this experiment.
+var pageVariations = [
+  function() {},  // Original: Do nothing. This will render the default HTML.
+  function() {    // Variation 1: Change donate to support
+    $( '.donation' ).html( 'RSVP ' );
+  }
+];
+
+// Wait for the DOM to load, then execute the view for the chosen variation.
+$(document).ready(function(){
+ 
+  // Execute the chosen view
+  pageVariations[chosenVariation]();
+}
+);
+</script>
+
+
+
+
 {% extends "layout.html" %}
 
 {% block mainContent %}
